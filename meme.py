@@ -1,5 +1,5 @@
 from discord.message import File
-from my_library import read_json
+from my_library import JSON
 import os
 import requests
 import io
@@ -20,7 +20,7 @@ class Meme:
 
     @staticmethod
     def getter(name):
-        memes = read_json('memes/memes.json')
+        memes = JSON.read_json('memes.json')
         if name in memes:
             url = memes[name]
             file = Meme.download_meme(url)
