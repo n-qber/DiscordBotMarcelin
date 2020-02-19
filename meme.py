@@ -27,7 +27,7 @@ class Meme:
             return File(file, filename=name + Meme.get_ext(url))
         else:
             return False
-
+#CREATE CLEAR LIMIT FUNCTION
     @staticmethod
     def setter(name, url):
         JSON.add_json("memes.json", {name: url})

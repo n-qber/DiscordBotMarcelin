@@ -16,20 +16,24 @@ if __name__ == '__main__':
 
 
     @client.command()
-    async def clear(ctx: discord.ext.commands.context.Context, **kwargs):
-        messages = await ctx.channel.history(limit=None).flatten()
+    async def clear(ctx: discord.ext.commands.context.Context, limit=None):
+        if limit:
+            limit = int(limit) + 1
+        messages = await ctx.channel.history(limit=limit).flatten()
         for message in messages:
             await message.delete()
 
     @client.command()
     async def control(ctx: discord.ext.commands.context.Context):
         await ctx.message.delete()
+        """
         while True:
             message = input(">>>  ")
             if message != "quit":
                 await ctx.send(message)
             else:
                 break
+        """
 
     @client.command()
     async def meme(ctx:  discord.ext.commands.context.Context, get_set, name, url=""):
