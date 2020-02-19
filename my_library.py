@@ -4,16 +4,16 @@ import json
 class JSON:
 
     @staticmethod
+    def write_json(fp, values: dict):
+        with open(fp, "w") as file:
+            file.write(json.dumps(values))
+
+    @staticmethod
     def add_json(fp, values: dict):
-        with open(fp, 'r') as jayson:
-            before = jayson.read()
-            before = before[:before.rfind("}")]
-        print(before)
-        with open(fp, 'w') as jayson:
-            jayson.write(before)
-            for name, value in values.items():
-                jayson.write(f', "{name}": "{value}"')
-            jayson.write("}")
+        before_values = JSON.read_json(fp)
+        for key, value in values.items():
+            before_values[key] = value
+        JSON.write_json(fp, before_values)
 
     @staticmethod
     def read_json(fp, return_type=dict):
