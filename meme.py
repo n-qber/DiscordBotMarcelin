@@ -28,3 +28,7 @@ class Meme:
         else:
             return False
 
+    @staticmethod
+    def setter(name, url):
+        JSON.add_json("memes.json", {name: url})
+

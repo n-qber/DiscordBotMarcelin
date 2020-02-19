@@ -33,17 +33,17 @@ if __name__ == '__main__':
 
     @client.command()
     async def meme(ctx:  discord.ext.commands.context.Context, get_set, name, url=""):
+        await ctx.message.delete()
         if get_set.lower().startswith("get"):
             file = Meme.getter(name)
             if file:
                 await ctx.send(ctx.author, file=file)
             else:
-                await ctx.message.delete()
                 await ctx.send(f"Couldn't get {name}\nIf you want to save {name} you should use\n!meme set {name} {name}_url",
                                delete_after=5)
         elif get_set.lower().startswith('set'):
-            await ctx.send("Function to be made tururu")
-
+            Meme.setter(name, url)
+            await ctx.send(name + " set with sucess", delete_after=5)
 
     client.run(TOKEN)
 
